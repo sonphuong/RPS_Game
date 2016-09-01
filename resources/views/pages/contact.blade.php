@@ -1,0 +1,20 @@
+@extends('layout')
+@section('content')
+<section class="container">
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+    <div>contact</div>
+</section>
+@stop
