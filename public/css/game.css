@@ -1,9 +1,13 @@
 .icon{
-	width: 150px;
-	height: 150px;
+	width: 125px;
+	height: 125px;
 }
-#frame{
-	float:right;
+.no-margin{
+	margin: 0px 0px;
+	padding: 0px 0px;
+}
+.col-xs-2 {
+    width: 14%;
 }
 #play-again{
 	font-weight: bold;
