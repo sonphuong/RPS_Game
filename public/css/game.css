@@ -1,0 +1,16 @@
+.icon{
+	width: 150px;
+	height: 150px;
+}
+#frame{
+	float:right;
+}
+#play-again{
+	font-weight: bold;
+	font-size: 16px;
+	padding: 0px 10px;
+}
+#content{
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}	

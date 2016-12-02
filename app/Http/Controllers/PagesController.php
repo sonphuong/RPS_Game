@@ -11,6 +11,12 @@ class PagesController extends Controller
     public function about(){
         return view('pages.about');
     }
+    public function game(){
+        return view('pages.game');
+    }
+    public function cvsc(){
+        return view('pages.cvsc');
+    }
     public function contact(){
         return view('pages.contact');
     }
