@@ -3,7 +3,7 @@
 
 <div mc-messages></div>
 <section class="container" ng-controller="gameCtrl">
-	
+<h4>To play: click to choose a tool</h4>
 	<span ng-repeat="tool in tools track by $index" >
 		<button ng-disabled="isPlayed" ng-click="play($index)" id="<% tool %>"><img src="../img/game/<% tool %>.png" class="icon"/></button>
 	</span>
