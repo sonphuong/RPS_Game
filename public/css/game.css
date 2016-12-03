@@ -18,14 +18,14 @@
 }
 #rs{
 	font-weight: bold;
-	font-size: 18px;
-	padding: 0px 10px;
+	font-size: 26px;
+	padding: 10px 10px;
 }
 .win{
 	color: green;
 }
 .loose{
-	color: red;
+	color: #E23237;
 }
 .draw{
 	color: orange;

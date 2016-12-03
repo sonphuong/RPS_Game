@@ -47,7 +47,7 @@
               <h3 class="masthead-brand">Rock-Paper-Scissors Game</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
+                  <li class="active"><a href="/">Home</a></li>
                   <li><a href="/game">Player vs Com</a></li>
                   <li><a href="/cvsc">Com vs Com</a></li>
                 </ul>
