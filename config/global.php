@@ -1,5 +1,18 @@
 <?php
+//global constant for app
 return [
-'GAME_TOOLS' => array('rock', 'paper', 'scissors')
+	//for game
+	'GAME' => [
+		'TOOLS' => array('rock', 'paper', 'scissors'),
+		'LAST_INDEX' => 2,
+		'FIRST_INDEX' => 0,
+		'WIN' => 1,
+		'DRAW' => 0,
+		'LOOSE' => -1
+	]
+	
 ];
 ?>
+
+
+    

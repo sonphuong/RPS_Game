@@ -6,6 +6,20 @@
 	margin: 0px 0px;
 	padding: 0px 0px;
 }
+#rs{
+	font-weight: bold;
+	font-size: 18px;
+	padding: 0px 10px;
+}
+.win{
+	color: green;
+}
+.loose{
+	color: red;
+}
+.draw{
+	color: orange;
+}
 .col-xs-2 {
     width: 14%;
 }

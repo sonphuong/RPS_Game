@@ -5,12 +5,22 @@ use App\Http\Requests;
 use App\Article;
 class GameController extends Controller
 {
-    const LAST_INDEX = 2;
-    const FIRST_INDEX = 0;
-    const WIN = 1;
-    const EQUAL = 0;
-    const LOOSE = -1;
-    const TOOLS = array('rock', 'paper', 'scissors');
+    public $tools;
+    public $win;
+    public $draw;
+    public $loose;
+    public $lastIndex;
+    public $firstIndex;
+    //init value
+    function __construct() {
+        $this->tools = config('global.GAME.TOOLS');
+        $this->win = config('global.GAME.WIN');
+        $this->draw = config('global.GAME.DRAW');
+        $this->loose = config('global.GAME.LOOSE');
+        $this->firstIndex = config('global.GAME.FIRST_INDEX');
+        $this->lastIndex = config('global.GAME.LAST_INDEX');
+    }
+    
     /**
      * when user choose an icon and ajax request will be sent to play function
      * play function select a random options from rps to return to client
@@ -21,25 +31,25 @@ class GameController extends Controller
     **/ 
     public function play(Request $request){
         $player = $request->input('intToolIdx'); 
-        $computer = array_rand(self::TOOLS); //get index
+        $computer = array_rand($this->tools); //get index
         $rs = "";
         if($player == $computer){
-            $rs = self::EQUAL;
+            $rs = $this->draw;
         }
         else{
             //normal case
             if($player > $computer){
-                $rs = self::WIN;
+                $rs = $this->win;
             }
             else{
-                $rs = self::LOOSE;
+                $rs = $this->loose;
             }
             //first-end case
-            if($player==self::LAST_INDEX && $computer==self::FIRST_INDEX){
-                $rs = self::LOOSE;
+            if($player==$this->lastIndex && $computer==$this->firstIndex){
+                $rs = $this->loose;
             }
-            if($player==self::FIRST_INDEX && $computer==self::LAST_INDEX){
-                $rs = self::WIN;
+            if($player==$this->firstIndex && $computer==$this->lastIndex){
+                $rs = $this->win;
             }
         }
         return response()->json([
@@ -52,26 +62,26 @@ class GameController extends Controller
      * 
     **/
     public function playCVSC(){
-        $com1 = array_rand(self::TOOLS); //get index
-        $com2 = array_rand(self::TOOLS); //get index
+        $com1 = array_rand($this->tools); //get index
+        $com2 = array_rand($this->tools); //get index
         $rs = "";
         if($com1 == $com2){
-            $rs = self::EQUAL;
+            $rs = $this->draw;
         }
         else{
             //normal case
             if($com1 > $com2){
-                $rs = self::WIN;
+                $rs = $this->win;
             }
             else{
-                $rs = self::LOOSE;
+                $rs = $this->loose;
             }
             //first-end case
-            if($com1==self::LAST_INDEX && $com2==self::FIRST_INDEX){
-                $rs = self::LOOSE;
+            if($com1==$this->lastIndex && $com2==$this->firstIndex){
+                $rs = $this->loose;
             }
-            if($com1==self::FIRST_INDEX && $com2==self::LAST_INDEX){
-                $rs = self::WIN;
+            if($com1==$this->firstIndex && $com2==$this->lastIndex){
+                $rs = $this->win;
             }
         }
         return response()->json([

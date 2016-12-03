@@ -7,6 +7,7 @@
 	</div>
 	<div class="col-xs-2 text-center">
 		<p>Com1 VS Com2</p>
+		<div id="rs" ng-show="isPlayed"></div>
 		<div ng-show="isPlayed"><a id="play-again" href='#' ng-click="resetCVSCGame()">Play Again</a></div>
 		<div ng-hide="isPlayed"><button type="button" class="btn btn-primary" ng-click="playCVSC()">Play</button></div>
 	</div>

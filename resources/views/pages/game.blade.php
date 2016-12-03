@@ -8,10 +8,11 @@
 	</div>
 	<div class="col-xs-2 text-center" ng-show="isPlayed">
 		<p>You VS Com</p>
+		<div id="rs"></div>
 		<div><a id="play-again" href='#' ng-click="resetGame()">Play Again</a></div>	
 	</div>
 	<div class="col-xs-2 no-margin" ng-repeat="tool in tools track by $index" ng-show="isPlayed" id="c<% tool %>">
-		<button><img src="../img/game/<% tool %>.png" class="icon"/></button>
+		<button disabled="true"><img src="../img/game/<% tool %>.png" class="icon"/></button>
 	</div>
 </section>
 @stop
