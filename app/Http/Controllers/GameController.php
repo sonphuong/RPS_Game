@@ -28,7 +28,6 @@ class GameController extends Controller
 
     /**
      * compare 1st param to 2nd param
-     * 
      * @param  [int] $player, [int] $computer
      * @return  [int] 0: draw case, 1: win case, -1: loose case
      */
@@ -60,7 +59,6 @@ class GameController extends Controller
     /**
      * when user choose an icon and ajax request will be sent to play function
      * play function select a random options from rps to return to client
-     * 
      * @param  [Request] $request
      * @return  [json] [int]rs: game result, [int]rp: computer's selected tool  
      */ 
@@ -77,13 +75,12 @@ class GameController extends Controller
 
     /**
      * computer vs computer
-     * 
      * @return  [json] [int]rs: game result, [int]com1: com1's selected tool, [int]come2: com2's selected tool
      */
     public function playCVSC(){
         $com1 = array_rand($this->tools); //get index
         $com2 = array_rand($this->tools); //get index
-        $rs = $this->compare($player,$computer);
+        $rs = $this->compare($com1,$com2);
         return response()->json([
             'rs' => $rs,
             'com1' => $com1,

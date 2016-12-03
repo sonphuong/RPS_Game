@@ -1,6 +1,16 @@
+
 .icon{
-	width: 125px;
-	height: 125px;
+    height: 200px;
+    width: 200px;
+}
+.icon-c{
+    height: 150px;
+    width: 150px;
+}
+.no-style{
+	border: none;
+	background: none;
+	outline-style: none;
 }
 .no-margin{
 	margin: 0px 0px;
