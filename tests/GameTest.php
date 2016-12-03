@@ -13,6 +13,7 @@ class GameTest extends TestCase{
     public $loose;
     public $lastIndex;
     public $firstIndex;
+
     //init value
     function __construct() {
         $const = [
@@ -34,12 +35,76 @@ class GameTest extends TestCase{
         $this->firstIndex = $const['GAME']['FIRST_INDEX'];
         $this->lastIndex = $const['GAME']['LAST_INDEX'];
     }
-    public function testSimple(){
-    	$this->assertTrue(true);
+
+
+    //draw case
+    public function testCase00(){
+    	$player = 0; 
+    	$computer = 0;
+    	$rs = $this->compare($player,$computer);
+        $this->assertEquals(0, $rs);
     }
+
+
+    //loose case
+    public function testCase01(){
+    	$player = 0; 
+    	$computer = 1;
+    	$rs = $this->compare($player,$computer);
+        $this->assertEquals(-1, $rs);
+
+    }
+
+
+    //win case    
+    public function testCase02(){
+    	$player = 0; 
+    	$computer = 2;
+    	$rs = $this->compare($player,$computer);
+        $this->assertEquals(1, $rs);
+
+    }
+
+
+    //win case
+    public function testCase10(){
+    	$player = 1; 
+    	$computer = 0;
+    	$rs = $this->compare($player,$computer);
+        $this->assertEquals(1, $rs);
+
+    }
+
+
+    //loose case
+    public function testCase12(){
+    	$player = 1; 
+    	$computer = 2;
+    	$rs = $this->compare($player,$computer);
+        $this->assertEquals(-1, $rs);
+    }
+
+
+    //win case
+    public function testCase21(){
+    	$player = 2; 
+    	$computer = 1;
+    	$rs = $this->compare($player,$computer);
+        $this->assertEquals(1, $rs);
+    }
+
+
+    //loose
+    public function testCase20(){
+    	$player = 2; 
+    	$computer = 0;
+    	$rs = $this->compare($player,$computer);
+        $this->assertEquals(-1, $rs);
+    }
+
+
     /**
      * test player vs computer
-     * @return [type] [description]
      */
 	public function testGame(){
 		$this->visit('/game');			
@@ -51,8 +116,33 @@ class GameTest extends TestCase{
 		$parameters = array('intToolIdx' => $player);
         $response = $this->call($method, $uri, $parameters);
         $content = json_decode($response->getContent(),true);
-        echo $rtRs = $content["rs"];
-        echo $computer = $content["rp"];
+        $rtRs = $content["rs"];
+        $computer = $content["rp"];
+        $rs = $this->compare($player,$computer);
+        $this->assertEquals($rtRs, $rs);
+	}
+
+
+	/**
+	 * test computer vs computer
+	 */
+	public function testCVSC(){
+		$this->visit('/cvsc')			
+			->seePageis('/cvsc');
+		$uri = '/game/playCVSC';
+		$method = 'POST';
+		$parameters = array('intToolIdx' => 0);
+        $response = $this->call($method, $uri, $parameters);
+        $content = json_decode($response->getContent(),true);
+	}
+
+    /**
+     * compare 1st param to 2nd param
+     * @param  $player
+     * @param  $computer
+     * @return [int] 0: draw case, 1: win case, -1: loose case
+     */
+    public function compare($player,$computer){
         $rs = "";
         if($player == $computer){
             $rs = $this->draw;
@@ -73,26 +163,8 @@ class GameTest extends TestCase{
                 $rs = $this->win;
             }
         }
-
-        //$response = $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
-		//$this->assertRedirectedToAction('GameController@play');
-        $this->assertEquals($rtRs, $rs);
-	}
-
-	/**
-	 * test computer vs computer
-	 */
-	public function testCVSC(){
-		$this->visit('/cvsc')			
-			->seePageis('/cvsc');
-		$uri = '/game/playCVSC';
-		$method = 'POST';
-		$parameters = array('intToolIdx' => 0);
-        $response = $this->call($method, $uri, $parameters);
-        $content = json_decode($response->getContent(),true);
-        /*echo $rs = $content["rs"];
-        echo $rp = $content["rp"];*/
-	}
+        return $rs;
+    }
 }
 
 ?>

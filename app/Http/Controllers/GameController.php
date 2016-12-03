@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Article;
+
 class GameController extends Controller
 {
     public $tools;
@@ -11,6 +13,8 @@ class GameController extends Controller
     public $loose;
     public $lastIndex;
     public $firstIndex;
+
+
     //init value
     function __construct() {
         $this->tools = config('global.GAME.TOOLS');
@@ -20,18 +24,15 @@ class GameController extends Controller
         $this->firstIndex = config('global.GAME.FIRST_INDEX');
         $this->lastIndex = config('global.GAME.LAST_INDEX');
     }
-    
+
+
     /**
-     * when user choose an icon and ajax request will be sent to play function
-     * play function select a random options from rps to return to client
-     * @return  
-     * 0: equal
-     * -1: you lose
-     * 1: you win 
-    **/ 
-    public function play(Request $request){
-        $player = $request->input('intToolIdx'); 
-        $computer = array_rand($this->tools); //get index
+     * compare 1st param to 2nd param
+     * 
+     * @param  [int] $player, [int] $computer
+     * @return  [int] 0: draw case, 1: win case, -1: loose case
+     */
+    public function compare($player,$computer){
         $rs = "";
         if($player == $computer){
             $rs = $this->draw;
@@ -52,38 +53,37 @@ class GameController extends Controller
                 $rs = $this->win;
             }
         }
+        return $rs;
+    }
+
+
+    /**
+     * when user choose an icon and ajax request will be sent to play function
+     * play function select a random options from rps to return to client
+     * 
+     * @param  [Request] $request
+     * @return  [json] [int]rs: game result, [int]rp: computer's selected tool  
+     */ 
+    public function play(Request $request){
+        $player = $request->input('intToolIdx'); 
+        $computer = array_rand($this->tools); //get index
+        $rs = $this->compare($player,$computer);
         return response()->json([
             'rs' => $rs,
             'rp' => $computer
         ]);
     }
+
+
     /**
      * computer vs computer
      * 
-    **/
+     * @return  [json] [int]rs: game result, [int]com1: com1's selected tool, [int]come2: com2's selected tool
+     */
     public function playCVSC(){
         $com1 = array_rand($this->tools); //get index
         $com2 = array_rand($this->tools); //get index
-        $rs = "";
-        if($com1 == $com2){
-            $rs = $this->draw;
-        }
-        else{
-            //normal case
-            if($com1 > $com2){
-                $rs = $this->win;
-            }
-            else{
-                $rs = $this->loose;
-            }
-            //first-end case
-            if($com1==$this->lastIndex && $com2==$this->firstIndex){
-                $rs = $this->loose;
-            }
-            if($com1==$this->firstIndex && $com2==$this->lastIndex){
-                $rs = $this->win;
-            }
-        }
+        $rs = $this->compare($player,$computer);
         return response()->json([
             'rs' => $rs,
             'com1' => $com1,
