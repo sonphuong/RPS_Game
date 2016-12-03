@@ -6,7 +6,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonReponse;
 
 class GameTest extends TestCase{
-	public $tools;
+	
+    public $tools;
     public $win;
     public $draw;
     public $loose;
@@ -14,12 +15,24 @@ class GameTest extends TestCase{
     public $firstIndex;
     //init value
     function __construct() {
-        $this->tools = config('global.GAME.TOOLS');
-        $this->win = config('global.GAME.WIN');
-        $this->draw = config('global.GAME.DRAW');
-        $this->loose = config('global.GAME.LOOSE');
-        $this->firstIndex = config('global.GAME.FIRST_INDEX');
-        $this->lastIndex = config('global.GAME.LAST_INDEX');
+        $const = [
+            //for game
+            'GAME' => [
+                'TOOLS' => array('rock', 'paper', 'scissors'),
+                'LAST_INDEX' => 2,
+                'FIRST_INDEX' => 0,
+                'WIN' => 1,
+                'DRAW' => 0,
+                'LOOSE' => -1
+            ]
+            
+        ];
+        $this->tools = $const['GAME']['TOOLS'];
+        $this->win = $const['GAME']['WIN'];
+        $this->draw = $const['GAME']['DRAW'];
+        $this->loose = $const['GAME']['LOOSE'];
+        $this->firstIndex = $const['GAME']['FIRST_INDEX'];
+        $this->lastIndex = $const['GAME']['LAST_INDEX'];
     }
     public function testSimple(){
     	$this->assertTrue(true);
