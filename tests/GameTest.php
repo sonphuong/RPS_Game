@@ -46,30 +46,37 @@ class GameTest extends TestCase{
 		$this->seePageis('/game');
 		$uri = '/game/play';
 		$method = 'POST';
+		//case rock
 		$player = 0;
 		$parameters = array('intToolIdx' => $player);
         $response = $this->call($method, $uri, $parameters);
         $content = json_decode($response->getContent(),true);
         echo $rtRs = $content["rs"];
         echo $computer = $content["rp"];
-
-        if($player > $computer){
-            $rs = $this->win;
+        $rs = "";
+        if($player == $computer){
+            $rs = $this->draw;
         }
         else{
-            $rs = $this->loose;
-        }
-        //first-end case
-        if($player==$this->lastIndex && $computer==$this->firstIndex){
-            $rs = $this->loose;
-        }
-        if($player==$this->firstIndex && $computer==$this->lastIndex){
-            $rs = $this->win;
+            //normal case
+            if($player > $computer){
+                $rs = $this->win;
+            }
+            else{
+                $rs = $this->loose;
+            }
+            //first-end case
+            if($player==$this->lastIndex && $computer==$this->firstIndex){
+                $rs = $this->loose;
+            }
+            if($player==$this->firstIndex && $computer==$this->lastIndex){
+                $rs = $this->win;
+            }
         }
 
         //$response = $this->call($method, $uri, $parameters, $cookies, $files, $server, $content);
 		//$this->assertRedirectedToAction('GameController@play');
-        //$this->assertEquals('Hello World', $response->getContent());
+        $this->assertEquals($rtRs, $rs);
 	}
 
 	/**
@@ -83,8 +90,8 @@ class GameTest extends TestCase{
 		$parameters = array('intToolIdx' => 0);
         $response = $this->call($method, $uri, $parameters);
         $content = json_decode($response->getContent(),true);
-        echo $rs = $content["rs"];
-        echo $rp = $content["rp"];
+        /*echo $rs = $content["rs"];
+        echo $rp = $content["rp"];*/
 	}
 }
 
