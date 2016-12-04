@@ -1,16 +1,9 @@
-var app = angular.module('gameApp', ["ngRoute",'MessageCenterModule'], function($interpolateProvider){
-    //angularjs and laravel using the same symbol {{}} for display variable so need to change one of them to avoid conflict
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-});
-
 app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$location','$controller', function($scope,$http,messageCenterService,$q,$location,$controller){
     
     $scope.tools = ["rock","paper","scissors"];
     $scope.isPlayed = false;
     $scope.isShowResponse = false;
     
-    console.log($location.path())
     /**
      * when game over only the selected tools are shown this function to make all tools show up again
      * @return {void}

@@ -36,7 +36,7 @@
 
   <body>
 
-    <div class="site-wrapper">
+    <div class="site-wrapper" ng-controller="layoutCtrl">
 
       <div class="site-wrapper-inner">
 
@@ -47,9 +47,9 @@
               <h3 class="masthead-brand">Rock-Paper-Scissors Game</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="/">Home</a></li>
-                  <li><a href="/game">Player vs Com</a></li>
-                  <li><a href="/cvsc">Com vs Com</a></li>
+                  <li ng-class="{'active':isHomePage}"><a href="/">Home</a></li>
+                  <li ng-class="{'active':isGamePage}"><a href="/game">Player vs Com</a></li>
+                  <li ng-class="{'active':isCVSCPage}"><a href="/cvsc">Com vs Com</a></li>
                 </ul>
               </nav>
             </div>
@@ -83,6 +83,7 @@
     <script src="/js/message-center.js"></script>
     <script src="/js/angular-route.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/layout.js"></script>
     <script src="/js/game.js"></script>
   </body>
 </html>
