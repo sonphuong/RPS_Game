@@ -134,6 +134,11 @@ class GameTest extends TestCase{
 		$parameters = array('intToolIdx' => 0);
         $response = $this->call($method, $uri, $parameters);
         $content = json_decode($response->getContent(),true);
+        $rtRs = $content["rs"];
+        $com1 = $content["com1"];
+        $com2 = $content["com2"];
+        $rs = $this->compare($com1,$com2);
+        $this->assertEquals($rtRs, $rs);
 	}
 
     /**
