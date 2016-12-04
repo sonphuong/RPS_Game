@@ -9,7 +9,7 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
     $scope.tools = ["rock","paper","scissors"];
     $scope.isPlayed = false;
     $scope.isShowResponse = false;
-
+    
     /**
      * when game over only the selected tools are shown this function to make all tools show up again
      * @return {void}
@@ -17,6 +17,9 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
     $scope.showAll = function(){
         for (var i = 0; i <=  $scope.tools.length; i++) {
             $("#"+$scope.tools[i]).show();
+            if(i != 0){
+                $("#"+$scope.tools[i]).removeClass("col-xs-offset-2");
+            }
         }
     }
 
@@ -29,6 +32,7 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
         for (var i = 0; i <=  $scope.tools.length; i++) {
             $("#"+$scope.tools[i]).show();
             $("#c"+$scope.tools[i]).show();
+            $("#"+$scope.tools[i]).removeClass("col-xs-offset-3");
         }
     }
 
@@ -46,12 +50,22 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
      * show the selected tools from user or computer and hide the others options
      * @param  {int} selected1
      * @param  {int} selected2
+     * @param  {int} isComVsCom
      * @return {void}
      */
-    $scope.showSelected = function(selected1, selected2){
+    $scope.showSelected = function(selected1, selected2, isComVsCom){
         for (var i = 0; i <  $scope.tools.length; i++) {
             if(selected1!=i){
                 $("#"+$scope.tools[i]).hide();
+            }
+            else{
+                if(isComVsCom){
+                    $("#"+$scope.tools[i]).addClass("col-xs-offset-3");
+                }
+                else{
+                    $("#"+$scope.tools[i]).addClass("col-xs-offset-2");
+                }
+                 
             }
             if(selected2==i){
                 $("#c"+$scope.tools[i]).show();
@@ -118,7 +132,7 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
         }
         $("#rs").html(""+msg+"");
         $("#rs").removeAttr('class');
-        $("#rs").addClass(cl); 
+        $("#rs").addClass(cl);
     }
 
 
@@ -143,7 +157,7 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
             else {
                 $scope.showRS("Com2 win",1);
             }
-            $scope.showSelected(rtData.com1, rtData.com2);
+            $scope.showSelected(rtData.com1, rtData.com2, 1);
             $scope.showPlayAgain();
         })
         .error(function(){

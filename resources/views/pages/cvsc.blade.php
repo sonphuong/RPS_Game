@@ -3,7 +3,7 @@
 <div mc-messages></div>
 <section class="container game" ng-controller="gameCtrl">
 	<div class="row">
-		<div class="text-center center-block" ng-cloak>
+		<div class="center-block" ng-cloak>
 			<div class="col-xs-2 no-margin" ng-repeat="tool in tools track by $index" id="<% tool %>">
 				<button disabled="true" class="no-style"><img ng-src="../img/game/<% tool %>.png" class="icon-c img-responsive"/></button>
 			</div>
