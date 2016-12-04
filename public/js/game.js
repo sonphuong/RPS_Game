@@ -4,12 +4,13 @@ var app = angular.module('gameApp', ["ngRoute",'MessageCenterModule'], function(
     $interpolateProvider.endSymbol('%>');
 });
 
-app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$window','$controller', function($scope,$http,messageCenterService,$q,$window,$controller){
+app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$location','$controller', function($scope,$http,messageCenterService,$q,$location,$controller){
     
     $scope.tools = ["rock","paper","scissors"];
     $scope.isPlayed = false;
     $scope.isShowResponse = false;
     
+    console.log($location.path())
     /**
      * when game over only the selected tools are shown this function to make all tools show up again
      * @return {void}
