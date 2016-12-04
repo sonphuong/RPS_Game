@@ -1,11 +1,12 @@
 
 .icon{
-    height: 200px;
+    height: auto;
     width: 200px;
 }
 .icon-c{
-    height: 150px;
-    width: 150px;
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
 }
 .no-style{
 	border: none;
@@ -15,8 +16,8 @@
 
 #rs{
 	font-weight: bold;
-	font-size: 24px;
-	padding: 10px 10px;
+	font-size: 2em;
+	
 }
 .win{
 	color: green;
@@ -27,13 +28,11 @@
 .draw{
 	color: orange;
 }
-.col-xs-2 {
-    width: 14%;
-}
+
 #play-again{
 	font-weight: bold;
-	font-size: 16px;
-	padding: 0px 10px;
+	font-size: 1em;
+	
 }
 #content{
 	margin-top: 10px;

@@ -18,7 +18,7 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
         for (var i = 0; i <=  $scope.tools.length; i++) {
             $("#"+$scope.tools[i]).show();
             if(i != 0){
-                $("#"+$scope.tools[i]).removeClass("col-xs-offset-2");
+                $("#"+$scope.tools[i]).removeClass("col-md-offset-2");
             }
         }
     }
@@ -32,7 +32,7 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
         for (var i = 0; i <=  $scope.tools.length; i++) {
             $("#"+$scope.tools[i]).show();
             $("#c"+$scope.tools[i]).show();
-            $("#"+$scope.tools[i]).removeClass("col-xs-offset-3");
+            $("#"+$scope.tools[i]).removeClass("col-md-offset-8");
         }
     }
 
@@ -60,10 +60,10 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$windo
             }
             else{
                 if(isComVsCom){
-                    $("#"+$scope.tools[i]).addClass("col-xs-offset-3");
+                    $("#"+$scope.tools[i]).addClass("col-md-offset-8");
                 }
                 else{
-                    $("#"+$scope.tools[i]).addClass("col-xs-offset-2");
+                    $("#"+$scope.tools[i]).addClass("col-md-offset-2");
                 }
                  
             }
