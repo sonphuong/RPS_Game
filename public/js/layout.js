@@ -5,7 +5,7 @@ var app = angular.module('gameApp', ["ngRoute",'MessageCenterModule'], function(
 });
 app.controller('layoutCtrl', ['$scope', function($scope){
     //set menu active
-    $scope.isHomePage = (window.location.pathname.indexOf("/")==1)?true:false;
+    $scope.isHomePage = (window.location.pathname=="/")?true:false;
     $scope.isGamePage = (window.location.pathname.indexOf("game")==1)?true:false;
     $scope.isCVSCPage = (window.location.pathname.indexOf("cvsc")==1)?true:false;
 

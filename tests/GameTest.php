@@ -149,7 +149,7 @@ class GameTest extends TestCase{
      */
     public function compare($player,$computer){
         $rs = "";
-        if($player == $computer){
+        if($player === $computer){
             $rs = $this->draw;
         }
         else{
@@ -161,10 +161,10 @@ class GameTest extends TestCase{
                 $rs = $this->loose;
             }
             //first-end case
-            if($player==$this->lastIndex && $computer==$this->firstIndex){
+            if($player === $this->lastIndex && $computer === $this->firstIndex){
                 $rs = $this->loose;
             }
-            if($player==$this->firstIndex && $computer==$this->lastIndex){
+            if($player === $this->firstIndex && $computer === $this->lastIndex){
                 $rs = $this->win;
             }
         }
