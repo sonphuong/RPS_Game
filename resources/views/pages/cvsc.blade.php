@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div mc-messages></div>
-<section class="container game" ng-controller="gameCtrl">
+<section class="container-fluid game" ng-controller="gameCtrl">
 	<div class="row">
 		<div class="center-block" ng-cloak>
 			<div class="col-md-5 center-block">

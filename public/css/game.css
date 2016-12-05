@@ -1,7 +1,7 @@
 
 .icon{
     height: auto;
-    width: 200px;
+    max-width: 100%;
 }
 .icon-c{
     max-width: 100%;
