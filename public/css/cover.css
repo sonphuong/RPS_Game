@@ -124,47 +124,35 @@ body {
 /*
  * Affix and center
  */
-@media (min-width: 768px) {
+
+@media (min-width: 992px) {
   .masthead-brand {
     float: left;
   }
   .masthead-nav {
     float: right;
   }
-}
- @media (min-width: 768px) {
   /* Pull out the header and footer */
-  /* .masthead {
+  .masthead {
     position: fixed;
     top: 0;
   }
   .mastfoot {
     position: fixed;
     bottom: 0;
-  } */
+  } 
   /* Start the vertical centering */
-  /* .site-wrapper-inner {
+  .site-wrapper-inner {
     vertical-align: middle;
-  } */
+  } 
+ 
   /* Handle the widths */
   .masthead,
   .mastfoot,
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
-  .game {
-    padding-top: 50px;
-  }
+  
 } 
-@media (min-width: 1024px) {
-  .game {
-    padding-top: 250px;
-  }
-}
-@media (min-width: 992px) {
-  .masthead,
-  .mastfoot,
-  .cover-container {
-    
-  }
-}
+
+

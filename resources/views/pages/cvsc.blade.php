@@ -1,8 +1,8 @@
 @extends('layout')
 @section('content')
 <div mc-messages></div>
-<section class="container-fluid game" ng-controller="gameCtrl">
-	<div class="row">
+<section class="container-fluid" ng-controller="gameCtrl">
+	<div class="row v-center">
 		<div class="center-block" ng-cloak>
 			<div class="col-md-5 center-block">
 				<div class="col-md-4" ng-repeat="tool in tools track by $index" id="<% tool %>">

@@ -2,8 +2,8 @@
 @section('content')
 <div mc-messages></div>
 
-<section class="container-fluid game" ng-controller="gameCtrl">
-	<div class="row">
+<section class="container-fluid" ng-controller="gameCtrl">
+	<div class="row v-center">
 		<div class="center-block" ng-cloak>
 			<div ng-cloak class="col-md-3" ng-repeat="tool in tools track by $index" id="<% tool %>" ng-class="{'col-md-offset-2':$first}">
 				<button ng-disabled="isPlayed" ng-click="play($index)" class="no-style"><img ng-src="../img/game/<% tool %>.png" class="icon img-responsive"/></button>
