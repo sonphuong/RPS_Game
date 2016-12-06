@@ -8,15 +8,29 @@ app.controller('gameCtrl', ['$scope','$cookies','$http','messageCenterService','
         $cookies.score = 0;
     }
     $scope.isCongra = false;//init not display congras
-    $scope.$watch(function(){return $cookies.score;},function($score){
-        $scope.score = $score;
-        if($score % 2 == 0 && $score > 0){
-            $scope.isCongra = true;
-        }
-        else{
-            $scope.isCongra = false;
-        }
-    });
+
+
+    /**
+     * get player's score and show congratulation 
+     * @param  {boolean} $isShowCongra
+     * @return {void}              
+     */
+    $scope.getScore = function(isShowCongra){
+        $scope.$watch(function(){return $cookies.score;},function($score){
+            $scope.score = $score;
+            if(isShowCongra){
+               if($score % 2 == 0 && $score > 0){
+                   $scope.isCongra = true;
+               }
+               else{
+                   $scope.isCongra = false;
+               } 
+            }
+        });
+    }
+    $scope.getScore(false);
+
+
     /**
      * when game over only the selected tools are shown this function to make all tools show up again
      * @return {void}
@@ -116,6 +130,7 @@ app.controller('gameCtrl', ['$scope','$cookies','$http','messageCenterService','
             messageCenterService.add('danger', "Error", {timeout: 5000});
             $scope.showPlayAgain();
         });
+        $scope.getScore(true);
     };
 
 
