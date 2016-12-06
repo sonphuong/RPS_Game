@@ -1,4 +1,4 @@
-var app = angular.module('gameApp', ["ngRoute",'MessageCenterModule'], function($interpolateProvider){
+var app = angular.module('gameApp', ["ngRoute",'ngCookies','MessageCenterModule'], function($interpolateProvider){
     //angularjs and laravel using the same symbol {{}} for display variable so need to change one of them to avoid conflict
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');

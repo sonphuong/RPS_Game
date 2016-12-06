@@ -1,9 +1,22 @@
-app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$location','$controller', function($scope,$http,messageCenterService,$q,$location,$controller){
+app.controller('gameCtrl', ['$scope','$cookies','$http','messageCenterService','$q','$location','$controller', function($scope,$cookies,$http,messageCenterService,$q,$location,$controller){
     
     $scope.tools = ["rock","paper","scissors"];
     $scope.isPlayed = false;
     $scope.isShowResponse = false;
-    
+    //$cookies.score = 0;
+    if(!$cookies.score || $cookies.score == "NaN"){
+        $cookies.score = 0;
+    }
+    $scope.isCongra = false;//init not display congras
+    $scope.$watch(function(){return $cookies.score;},function($score){
+        $scope.score = $score;
+        if($score % 2 == 0 && $score > 0){
+            $scope.isCongra = true;
+        }
+        else{
+            $scope.isCongra = false;
+        }
+    });
     /**
      * when game over only the selected tools are shown this function to make all tools show up again
      * @return {void}
@@ -87,11 +100,13 @@ app.controller('gameCtrl', ['$scope','$http','messageCenterService','$q','$locat
         .success(function (rtData) {
             if (rtData.rs == 1) {
                 $scope.showRS("You win",rtData.rs);
+                $cookies.score = parseInt($cookies.score) + 1;
             }
             else if(rtData.rs == 0) {
                 $scope.showRS("Draw",rtData.rs);
             }
             else {
+                $cookies.score = parseInt($cookies.score) - 1;
                 $scope.showRS("You loose",rtData.rs);
             }
             $scope.showSelected(intToolIdx, rtData.rp);

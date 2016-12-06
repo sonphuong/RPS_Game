@@ -61,7 +61,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              <p>Created by Son Phuong</p>
+              
             </div>
           </div>
 
@@ -79,7 +79,8 @@
     <script src="/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
-	  <script src="/js/angular.js"></script>
+    <script src="/js/angular.js"></script>
+	  <script src="/js/angular-cookies.min.js"></script>
     <script src="/js/message-center.js"></script>
     <script src="/js/angular-route.js"></script>
     <script src="/js/app.js"></script>
