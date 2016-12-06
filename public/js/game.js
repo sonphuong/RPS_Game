@@ -3,32 +3,30 @@ app.controller('gameCtrl', ['$scope','$cookies','$http','messageCenterService','
     $scope.tools = ["rock","paper","scissors"];
     $scope.isPlayed = false;
     $scope.isShowResponse = false;
-    //$cookies.score = 0;
     if(!$cookies.score || $cookies.score == "NaN"){
         $cookies.score = 0;
     }
-    $scope.isCongra = false;//init not display congras
+    
 
 
     /**
      * get player's score and show congratulation 
-     * @param  {boolean} $isShowCongra
      * @return {void}              
      */
-    $scope.getScore = function(isShowCongra){
+    $scope.getScore = function($rs){
         $scope.$watch(function(){return $cookies.score;},function($score){
             $scope.score = $score;
-            if(isShowCongra){
-               if($score % 2 == 0 && $score > 0){
-                   $scope.isCongra = true;
-               }
-               else{
-                   $scope.isCongra = false;
-               } 
+            if(($rs == 1) && ($score % 2 == 0 && $score > 0)){
+                $scope.isCongra = true;
             }
+            else{
+                $scope.isCongra = false;
+            } 
         });
     }
-    $scope.getScore(false);
+
+    //show player score
+    $scope.getScore();
 
 
     /**
@@ -115,13 +113,17 @@ app.controller('gameCtrl', ['$scope','$cookies','$http','messageCenterService','
             if (rtData.rs == 1) {
                 $scope.showRS("You win",rtData.rs);
                 $cookies.score = parseInt($cookies.score) + 1;
+                //only show congratulation if you are win
+                $scope.getScore(rtData.rs);
             }
             else if(rtData.rs == 0) {
                 $scope.showRS("Draw",rtData.rs);
+                $scope.getScore(rtData.rs);
             }
             else {
                 $cookies.score = parseInt($cookies.score) - 1;
                 $scope.showRS("You loose",rtData.rs);
+                $scope.getScore(rtData.rs);
             }
             $scope.showSelected(intToolIdx, rtData.rp);
             $scope.showPlayAgain();
@@ -130,7 +132,6 @@ app.controller('gameCtrl', ['$scope','$cookies','$http','messageCenterService','
             messageCenterService.add('danger', "Error", {timeout: 5000});
             $scope.showPlayAgain();
         });
-        $scope.getScore(true);
     };
 
 

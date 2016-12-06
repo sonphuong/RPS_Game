@@ -12,7 +12,6 @@
 			</div>
 			<div ng-cloak class="col-md-2 center-block top-bottom-5" ng-show="isPlayed" >
 				<div>You VS Com</div>
-				
 				<div id="rs"></div>
 				<div><a id="play-again" href='' ng-click="resetGame()">Play Again</a></div>	
 				<div class="row" id="congra" ng-show="isCongra">

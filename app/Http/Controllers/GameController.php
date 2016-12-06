@@ -52,7 +52,7 @@ class GameController extends Controller
                 $rs = $this->win;
             }
         }
-        return 1;
+        return $rs;
     }
 
 
